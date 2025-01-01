@@ -1,4 +1,6 @@
 using DATINGAPP.Data;
+using DATINGAPP.Interfaces;
+using DATINGAPP.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace DATINGAPP
@@ -17,6 +19,7 @@ namespace DATINGAPP
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
             builder.Services.AddCors();
+            builder.Services.AddScoped<ITokenService, TokenService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
