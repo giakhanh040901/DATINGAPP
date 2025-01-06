@@ -1,5 +1,6 @@
 ﻿using DATINGAPP.Data;
 using DATINGAPP.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
@@ -22,6 +23,7 @@ namespace DATINGAPP.Controllers
             return Ok(users);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUserById(int id)
         {
