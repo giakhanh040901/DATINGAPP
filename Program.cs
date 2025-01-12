@@ -1,6 +1,7 @@
 using DATINGAPP.Data;
 using DATINGAPP.Extensions;
 using DATINGAPP.Interfaces;
+using DATINGAPP.Middleware;
 using DATINGAPP.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,7 @@ namespace DATINGAPP
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseCors(x =>
                 x.AllowAnyHeader()
