@@ -21,8 +21,8 @@ namespace DATINGAPP.Services
             var tokenKey =
                 _config["TokenKey"]
                 ?? throw new Exception("Cannot access tokenKey from appsettings");
-            if (tokenKey.Length < 64)
-                throw new Exception("Your tokenKey needs to be longer");
+            //if (tokenKey.Length < 64)
+            //    throw new Exception("Your tokenKey needs to be longer");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
 
             var claims = new List<Claim> { new(ClaimTypes.NameIdentifier, user.UserName) };

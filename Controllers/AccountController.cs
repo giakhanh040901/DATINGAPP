@@ -28,21 +28,22 @@ namespace DATINGAPP.Controllers
             {
                 return BadRequest("Username is taken");
             }
-            using var hmac = new HMACSHA256();
+            return Ok();
+            //using var hmac = new HMACSHA256();
 
-            var user = new AppUser
-            {
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(register.Password)),
-                UserName = register.Username,
-                PasswordSalt = hmac.Key
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            return new UserDto
-            {
-                Token = _tokenService.CreateToken(user),
-                Username = user.UserName
-            };
+            //var user = new AppUser
+            //{
+            //    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(register.Password)),
+            //    UserName = register.Username,
+            //    PasswordSalt = hmac.Key
+            //};
+            //_context.Users.Add(user);
+            //await _context.SaveChangesAsync();
+            //return new UserDto
+            //{
+            //    Token = _tokenService.CreateToken(user),
+            //    Username = user.UserName
+            //};
         }
 
         [HttpPost("login")]
@@ -55,7 +56,7 @@ namespace DATINGAPP.Controllers
             {
                 return Unauthorized("Invalid username");
             }
-            using var hmac = new HMACSHA256(user.PasswordSalt);
+            using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHmac = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
 
             for (int i = 0; i < computedHmac.Length; i++)
