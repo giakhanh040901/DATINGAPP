@@ -1,12 +1,11 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using DATINGAPP.Data;
+﻿using DATINGAPP.Data;
 using DATINGAPP.DTOs;
-using DATINGAPP.Entities;
 using DATINGAPP.Interfaces;
-using DATINGAPP.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DATINGAPP.Controllers
 {
